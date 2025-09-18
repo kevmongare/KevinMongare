@@ -68,7 +68,7 @@ const Hero = () => {
               <Button
                 text="View My Work"
                 variant="CTA"
-                className="bg-[var(--accent-color)] text-[var(--bg-color)]"
+                className="bg-[var(--accent-color)] text-[var(--bg-color)] hover:opacity-90"
               />
             </a>
             <Button

@@ -50,7 +50,7 @@ const Menu = () => {
           
           {/* Logo */}
           <div className="flex justify-center">
-            <div className="bg-green-bright rounded-full w-12 h-12 flex items-center justify-center shadow-md">
+            <div className="bg-green-bright rounded-full w-12 h-12 flex items-center justify-center shadow-md mb-8">
               <img 
                 src="./kev.png" 
                 alt="Logo" 
@@ -61,7 +61,7 @@ const Menu = () => {
 
           {/* Navigation */}
           <nav className="flex-1 flex items-center">
-            <ul className="space-y-10">
+            <ul className="space-y-5">
               {MenuList.map((item, index) => (
                 <li key={index} className="flex justify-center">
                   <a
