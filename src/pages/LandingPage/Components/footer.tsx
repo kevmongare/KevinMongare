@@ -8,7 +8,7 @@ const FooterPart = () => {
       }}
     >
       <p className="text-sm sm:text-base text-center">
-        &copy; Kevin Mongare {new Date().getFullYear()}
+        &copy; KevinMongare {new Date().getFullYear()}
       </p>
       <p
         className="text-xs sm:text-sm mt-1"
