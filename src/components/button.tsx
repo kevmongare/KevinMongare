@@ -1,3 +1,14 @@
+/**
+ * The `Button` component in TypeScript React renders a button with customizable text, styling
+ * variants, onClick behavior, and disabled state handling.
+ * @param  - The `Button` component you provided is a React functional component that renders a button
+ * with customizable text, variant styles, onClick handler, disabled state, and additional className.
+ * Here's a breakdown of the parameters used in the `ButtonProps` type:
+ * @returns The `Button` component is being returned. It is a functional component that renders a
+ * styled button element using the provided props such as text, variant, onClick function, disabled
+ * state, and className. The button's style is determined based on the variant prop, and it includes
+ * animations for tap and hover effects.
+ */
 import type React from "react";
 import { motion } from "framer-motion";
 

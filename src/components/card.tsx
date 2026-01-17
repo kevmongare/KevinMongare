@@ -1,3 +1,5 @@
+/* This code snippet is defining a React functional component called `Card` that represents a card
+component with customizable properties. */
 import React from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 

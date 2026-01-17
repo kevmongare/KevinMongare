@@ -1,3 +1,5 @@
+/* The above code is a React component called `Menu` that serves as a navigation menu for a website.
+Here is a breakdown of what the code is doing: */
 import { useState, useEffect } from 'react';
 import MenuList from '../data/Menu';
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";

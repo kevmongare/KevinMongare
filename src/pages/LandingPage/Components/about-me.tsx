@@ -2,7 +2,7 @@ import TechStack from '../../../data/tech-stack'
 
 const About = 'About Me'
 const Aboutme =
-  'I’m a React & MERN Stack Developer and Data Science trainee passionate about building scalable web apps and data-driven solutions. My unique background combines frontend development, SQL databases, and analytics to deliver solutions that are both user-friendly and insightful.'
+  'I’m a React & MERN Stack Developer and Data Engineer trainee passionate about building scalable web apps and data-driven solutions. My unique background combines frontend development, SQL databases, and analytics to deliver solutions that are both user-friendly and insightful.'
 
 const AboutMe = () => {
   return (
@@ -26,7 +26,7 @@ const AboutMe = () => {
         {/* Tech Skills */}
         <div className="mx-auto max-w-6xl">
           <h2 className="text-green-bright font-heading text-2xl sm:text-3xl mb-8">
-            💻 Tech Skills
+            Tech Skills
           </h2>
 
           {/* Responsive Grid */}

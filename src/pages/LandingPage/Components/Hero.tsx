@@ -1,3 +1,7 @@
+/**
+ * The Hero component in this TypeScript React code displays information about me, including
+ * his name, job titles, and a button to download his CV.
+ */
 import { ReactTyped } from "react-typed";
 import Button from "../../../components/button";
 
