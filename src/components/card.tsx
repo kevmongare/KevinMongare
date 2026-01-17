@@ -1,5 +1,6 @@
 /* This code snippet is defining a React functional component called `Card` that represents a card
 component with customizable properties. */
+
 import React from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
@@ -19,18 +20,18 @@ const Card: React.FC<CardProps> = ({
   onClick,
 }) => {
   return (
-    <div className="relative bg-navy-light hover:shadow-2xl rounded-xl overflow-hidden group transition-all duration-500 hover:scale-[1.02]">
+    <div className="relative bg-navy-light hover:shadow-2xl rounded-sm overflow-hidden group transition-all duration-500 hover:scale-[1.02]">
       {/* Image */}
       {image && (
         <img
           src={image}
           alt={title}
-          className="w-full h-72 object-cover"
+          className="w-full h-45 object-cover"
         />
       )}
 
       {/* Card Content */}
-      <div className="p-6 bg-navy flex flex-col justify-between h-54">
+      <div className="p-3 bg-navy flex flex-col justify-between h-54">
         <h2 className="text-2xl font-heading mb-3" style={{ color: "var(--accent-color)" }}>
           {title}
         </h2>
