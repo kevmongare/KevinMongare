@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Button from "../components/button";
+import Button from "../../../components/button";
 
 const TITLES = ["Full Stack Developer", "Database Engineer", "Tech Enthusiast", "Problem Solver"];
 
