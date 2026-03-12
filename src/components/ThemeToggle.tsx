@@ -5,20 +5,21 @@ const ThemeToggle = () => {
   const [isDark, setIsDark] = useState(true);
 
   useEffect(() => {
-    if (isDark) {
-      document.documentElement.classList.remove("light");
-    } else {
-      document.documentElement.classList.add("light");
-    }
+    document.documentElement.classList.toggle("light", !isDark);
   }, [isDark]);
 
   return (
     <button
       onClick={() => setIsDark(!isDark)}
-      className="fixed bottom-4 right-4 sm:top-5 sm:right-5 z-50 w-12 h-12 flex items-center justify-center rounded-full bg-green-bright text-navy shadow-lg hover:scale-110 transition-transform duration-300 focus:outline-none"
-      aria-label="Toggle Dark/Light Mode"
+      className="fixed bottom-5 right-5 z-50 w-11 h-11 flex items-center justify-center rounded-full shadow-lg transition-all duration-300 hover:scale-110 active:scale-95 focus-visible:outline-none focus-visible:ring-2"
+      style={{
+        backgroundColor: "var(--accent-color)",
+        color: "var(--bg-color)",
+        boxShadow: "0 0 20px color-mix(in srgb, var(--accent-color) 40%, transparent)",
+      }}
+      aria-label={isDark ? "Switch to light mode" : "Switch to dark mode"}
     >
-      {isDark ? <FaSun size={20} /> : <FaMoon size={20} />}
+      {isDark ? <FaSun size={16} /> : <FaMoon size={16} />}
     </button>
   );
 };
