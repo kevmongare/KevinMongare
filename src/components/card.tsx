@@ -1,6 +1,3 @@
-/* This code snippet is defining a React functional component called `Card` that represents a card
-component with customizable properties. */
-
 import React from "react";
 import { FaExternalLinkAlt } from "react-icons/fa";
 
@@ -20,38 +17,53 @@ const Card: React.FC<CardProps> = ({
   onClick,
 }) => {
   return (
-    <div className="relative bg-navy-light hover:shadow-2xl rounded-sm overflow-hidden group transition-all duration-500 hover:scale-[1.02]">
+    <div
+      className="group relative rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+      style={{
+        backgroundColor: "color-mix(in srgb, var(--accent-color) 4%, var(--bg-color))",
+        border: "1px solid color-mix(in srgb, var(--accent-color) 12%, transparent)",
+      }}
+    >
       {/* Image */}
       {image && (
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-45 object-cover"
-        />
+        <div className="overflow-hidden h-44">
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
       )}
 
-      {/* Card Content */}
-      <div className="p-3 bg-navy flex flex-col justify-between h-54">
-        <h2 className="text-2xl font-heading mb-3" style={{ color: "var(--accent-color)" }}>
+      {/* Body */}
+      <div className="flex flex-col flex-1 p-5 gap-3">
+        <h2 className="text-lg font-bold leading-snug" style={{ color: "var(--accent-color)" }}>
           {title}
         </h2>
-        <p className="text-slate text-sm md:text-base leading-relaxed flex-grow" style={{ color: "var(--text-color)" }}>
+        <p className="text-sm leading-relaxed flex-1" style={{ color: "var(--text-color)" }}>
           {description}
         </p>
+
+        <button
+          onClick={onClick}
+          className="mt-2 flex items-center gap-2 text-sm font-semibold self-start px-4 py-2 rounded-lg transition-all duration-200 active:scale-95"
+          style={{
+            backgroundColor: "var(--accent-color)",
+            color: "var(--bg-color)",
+          }}
+        >
+          {buttonText}
+          <FaExternalLinkAlt size={11} />
+        </button>
       </div>
 
-      {/* Slide-up button */}
-      <div className="absolute bottom-0 left-0 right-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-        <div className="bg-green-bright flex justify-center py-3">
-          <button
-            onClick={onClick}
-            className="flex items-center gap-2 font-semibold hover:scale-105 transition-transform"
-            style={{ color: "var(--bg-color)" }}
-          >
-            {buttonText} <FaExternalLinkAlt />
-          </button>
-        </div>
-      </div>
+      {/* Hover border glow */}
+      <div
+        className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+        style={{
+          boxShadow: "inset 0 0 0 1px var(--accent-color)",
+        }}
+      />
     </div>
   );
 };
