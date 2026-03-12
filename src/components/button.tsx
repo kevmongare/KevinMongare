@@ -1,24 +1,15 @@
-/**
- * The `Button` component in TypeScript React renders a button with customizable text, styling
- * variants, onClick behavior, and disabled state handling.
- * @param  - The `Button` component you provided is a React functional component that renders a button
- * with customizable text, variant styles, onClick handler, disabled state, and additional className.
- * Here's a breakdown of the parameters used in the `ButtonProps` type:
- * @returns The `Button` component is being returned. It is a functional component that renders a
- * styled button element using the provided props such as text, variant, onClick function, disabled
- * state, and className. The button's style is determined based on the variant prop, and it includes
- * animations for tap and hover effects.
- */
 import type React from "react";
-import { motion } from "framer-motion";
 
-type ButtonProps = {
+type Variant = "primary" | "secondary" | "danger" | "CTA" | "other";
+
+interface ButtonProps {
   text: string;
-  variant?: "primary" | "secondary" | "danger" | "CTA" | "other";
+  variant?: Variant;
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
-};
+  type?: "button" | "submit" | "reset";
+}
 
 const Button: React.FC<ButtonProps> = ({
   text,
@@ -26,40 +17,29 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   disabled = false,
   className = "",
+  type = "button",
 }) => {
-  const baseStyle =
-    "px-3 py-2 rounded-sm font-semibold cursor-pointer transition-colors duration-200";
+  const base =
+    "inline-flex items-center justify-center px-5 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed focus-visible:outline-none focus-visible:ring-2";
 
-  const variantStyle = {
-    primary: "bg-green-bright text-navy hover:bg-green-bright/80",
-
+  const variants: Record<Variant, string> = {
+    primary:   "bg-[var(--accent-color)] text-[var(--bg-color)] hover:opacity-85",
     secondary: "bg-orange-500 text-white hover:bg-orange-600",
-
-    danger: "bg-red-500 text-white hover:bg-red-600",
-
-    // CTA = solid accent button
-    CTA: "bg-[var(--accent-color)] text-[var(--bg-color)] hover:opacity-90",
-
-    // other = outlined accent button
+    danger:    "bg-red-500 text-white hover:bg-red-600",
+    CTA:       "bg-[var(--accent-color)] text-[var(--bg-color)] hover:opacity-85",
     other:
-      "border-2 border-[var(--accent-color)] text-[var(--accent-color)] hover:bg-[var(--accent-color)] hover:text-[var(--bg-color)]",
-  }[variant];
-
-  const disabledStyle =
-    "bg-gray-400 text-gray-200 cursor-not-allowed hover:bg-gray-400";
+      "border border-[var(--accent-color)] text-[var(--accent-color)] hover:bg-[var(--accent-color)] hover:text-[var(--bg-color)]",
+  };
 
   return (
-    <motion.button
-      whileTap={{ scale: 0.95 }}
-      whileHover={!disabled ? { scale: 1.05 } : {}}
+    <button
+      type={type}
       onClick={onClick}
       disabled={disabled}
-      className={`${baseStyle} ${
-        disabled ? disabledStyle : variantStyle
-      } ${className}`}
+      className={`${base} ${variants[variant]} ${className}`}
     >
       {text}
-    </motion.button>
+    </button>
   );
 };
 
