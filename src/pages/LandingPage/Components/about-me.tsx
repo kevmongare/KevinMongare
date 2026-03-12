@@ -1,67 +1,111 @@
-import TechStack from '../../../data/tech-stack'
+// Replace TechStack import with your actual path
+// import TechStack from '../../../data/tech-stack'
 
-const About = 'About Me'
-const Aboutme =
-  'I’m a React & MERN Stack Developer and Data Engineer trainee passionate about building scalable web apps and data-driven solutions. My unique background combines frontend development, SQL databases, and analytics to deliver solutions that are both user-friendly and insightful.'
+const TechStack = {
+  Frontend: ["React", "TypeScript", "Tailwind CSS", "Next.js", "Framer Motion"],
+  Backend: ["Node.js", "Express", "MongoDB", "PostgreSQL", "REST APIs"],
+  DataScience: ["Python", "Pandas", "SQL", "Power BI", "Data Modelling"],
+};
 
 const AboutMe = () => {
+  const categories = [
+    { label: "Frontend", items: TechStack.Frontend },
+    { label: "Backend",  items: TechStack.Backend },
+    { label: "Data",     items: TechStack.DataScience },
+  ];
+
   return (
     <section
       id="about"
-      className="min-h-screen flex items-center justify-center px-6 sm:px-10 lg:px-20 bg-navy text-slate bg-navy-light"
+      className="relative min-h-screen flex items-center justify-center px-6 sm:px-10 lg:px-20 py-24 md:ml-24 overflow-hidden"
+      style={{ backgroundColor: "var(--bg-color-light)" }}
     >
-      <div className="w-full max-w-5xl text-center">
-        {/* Heading */}
-        <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl mb-4">
-          <span className="text-green-bright text-xl sm:text-2xl">0.2 </span>
-          {About}
-        </h1>
-        <hr className="mx-auto w-16 sm:w-20 border-green-bright mb-6" />
+      {/* Decorative accent line */}
+      <div
+        className="absolute left-0 top-1/4 w-1 h-40 rounded-r-full hidden md:block"
+        style={{ backgroundColor: "var(--accent-color)" }}
+      />
 
-        {/* Description */}
-        <p className="font-code text-base sm:text-lg leading-relaxed mb-10 px-2 sm:px-8">
-          {Aboutme}
+      <div className="w-full max-w-5xl">
+        {/* Section header */}
+        <div className="mb-14">
+          <p className="font-mono text-sm mb-2" style={{ color: "var(--accent-color)" }}>
+            0.2
+          </p>
+          <h1
+            className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight mb-3"
+            style={{ color: "var(--text-color-light)" }}
+          >
+            About Me
+          </h1>
+          <div className="w-12 h-1 rounded-full" style={{ backgroundColor: "var(--accent-color)" }} />
+        </div>
+
+        {/* Bio */}
+        <p
+          className="text-base sm:text-lg leading-relaxed mb-14 max-w-3xl"
+          style={{ color: "var(--text-color)" }}
+        >
+          I'm a{" "}
+          <span style={{ color: "var(--accent-color)" }} className="font-semibold">
+            React & MERN Stack Developer
+          </span>{" "}
+          and Data Engineer trainee passionate about building scalable web apps and data-driven
+          solutions. My unique background combines frontend development, SQL databases, and analytics
+          to deliver experiences that are both user-friendly and insightful.
         </p>
 
         {/* Tech Skills */}
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-green-bright font-heading text-2xl sm:text-3xl mb-8">
-            Tech Skills
+        <div>
+          <h2
+            className="font-mono text-lg mb-8 flex items-center gap-3"
+            style={{ color: "var(--accent-color)" }}
+          >
+            <span>Tech Skills</span>
+            <span
+              className="flex-1 h-px opacity-20"
+              style={{ backgroundColor: "var(--accent-color)" }}
+            />
           </h2>
 
-          {/* Responsive Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 gap-8 text-left sm:text-center">
-            <ul className="space-y-3">
-              {TechStack.Frontend.map((items, index) => (
-                <li key={index} className="hover:text-green-bright transition">
-                  <span className="text-green-bright">‣ </span>
-                  {items}
-                </li>
-              ))}
-            </ul>
-
-            <ul className="space-y-3">
-              {TechStack.Backend.map((items, index) => (
-                <li key={index} className="hover:text-green-bright transition">
-                  <span className="text-green-bright">‣ </span>
-                  {items}
-                </li>
-              ))}
-            </ul>
-
-            <ul className="space-y-3">
-              {TechStack.DataScience.map((items, index) => (
-                <li key={index} className="hover:text-green-bright transition">
-                  <span className="text-green-bright">‣ </span>
-                  {items}
-                </li>
-              ))}
-            </ul>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {categories.map((cat) => (
+              <div
+                key={cat.label}
+                className="rounded-xl p-5 transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  backgroundColor: "color-mix(in srgb, var(--accent-color) 5%, var(--bg-color))",
+                  border: "1px solid color-mix(in srgb, var(--accent-color) 15%, transparent)",
+                }}
+              >
+                <h3
+                  className="text-xs font-mono uppercase tracking-widest mb-4"
+                  style={{ color: "var(--accent-color)" }}
+                >
+                  {cat.label}
+                </h3>
+                <ul className="space-y-2.5">
+                  {cat.items.map((item) => (
+                    <li
+                      key={item}
+                      className="flex items-center gap-2 text-sm"
+                      style={{ color: "var(--text-color-light)" }}
+                    >
+                      <span
+                        className="w-1 h-1 rounded-full flex-shrink-0"
+                        style={{ backgroundColor: "var(--accent-color)" }}
+                      />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default AboutMe
+export default AboutMe;
