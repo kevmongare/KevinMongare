@@ -1,100 +1,77 @@
-// src/pages/sections/Contact.tsx
-import React, { useState } from "react";
-import { FaLinkedin, FaGithub, FaTwitter } from "react-icons/fa";
+import TechStack from '../../../data/tech-stack';
 
-const ContactSection = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+const categories = [
+  { label: 'Frontend', items: TechStack.Frontend },
+  { label: 'Backend',  items: TechStack.Backend },
+  { label: 'Data',     items: TechStack.DataScience },
+];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
+const AboutMe = () => (
+  <section
+    id="about"
+    style={{
+      minHeight: '100vh',
+      background: 'var(--bg-2)',
+      padding: 'clamp(64px,10vw,120px) clamp(24px,8vw,120px)',
+      display: 'flex', alignItems: 'center',
+    }}
+  >
+    <div style={{ maxWidth: 900, width: '100%', margin: '0 auto' }}>
+      {/* Label */}
+      <p className="section-label" style={{ marginBottom: 12 }}>0.2 — About Me</p>
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    // Placeholder: You can integrate email API (EmailJS, Formspree, Supabase) here
-    setTimeout(() => setSubmitted(false), 3000);
-  };
-
-  return (
-    <section
-      id="contact"
-      className="min-h-screen flex flex-col items-center p-5 md:ml-24 bg-cover bg-center"
-      style={{ backgroundColor: "var(--bg-color-light)" }}
-    >
-      {/* Header */}
+      {/* Heading */}
       <h2
-        className="text-3xl font-bold mb-10 underline decoration-[#64ffda] underline-offset-4 text-center"
-        style={{ color: "var(--text-color-light)" }}
+        className="font-display"
+        style={{
+          fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 800,
+          color: 'var(--text-bright)', marginBottom: 32, letterSpacing: '-0.02em',
+        }}
       >
-        Get In Touch
+        Who I Am
       </h2>
 
-      <div className="flex flex-col md:flex-row w-full max-w-5xl gap-10">
-        {/* Contact Form */}
-        <form
-          className="flex-1 flex flex-col space-y-4 p-6 rounded-xl shadow-lg bg-navy-light dark:bg-white transition-colors duration-500"
-          onSubmit={handleSubmit}
-        >
-          <input
-            type="text"
-            name="name"
-            placeholder="Your Name"
-            value={form.name}
-            onChange={handleChange}
-            required
-            className="p-3 rounded border border-gray-600 dark:border-gray-300 bg-transparent dark:bg-gray-100 text-white dark:text-navy placeholder:text-slate dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-bright transition-colors duration-300"
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Your Email"
-            value={form.email}
-            onChange={handleChange}
-            required
-            className="p-3 rounded border border-gray-600 dark:border-gray-300 bg-transparent dark:bg-gray-100 text-white dark:text-navy placeholder:text-slate dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-bright transition-colors duration-300"
-          />
-          <textarea
-            name="message"
-            placeholder="Your Message"
-            value={form.message}
-            onChange={handleChange}
-            required
-            rows={5}
-            className="p-3 rounded border border-gray-600 dark:border-gray-300 bg-transparent dark:bg-gray-100 text-white dark:text-navy placeholder:text-slate dark:placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-green-bright transition-colors duration-300"
-          />
-          <button
-            type="submit"
-            className="bg-green-bright text-navy font-semibold py-3 rounded hover:scale-105 transition-transform"
-          >
-            {submitted ? "Message Sent!" : "Send Message"}
-          </button>
-        </form>
+      {/* Two column layout */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 48, alignItems: 'start' }}>
+        {/* Bio column */}
+        <div>
+          <p style={{ color: 'var(--text)', fontSize: '1rem', lineHeight: 1.85, marginBottom: 20 }}>
+            I'm a React & MERN Stack Developer and Data Engineer trainee passionate about building
+            scalable web apps and data-driven solutions.
+          </p>
+          <p style={{ color: 'var(--text)', fontSize: '1rem', lineHeight: 1.85, marginBottom: 20 }}>
+            My background bridges <span style={{ color: 'var(--accent)' }}>frontend development</span>,{' '}
+            <span style={{ color: 'var(--accent)' }}>SQL databases</span>, and{' '}
+            <span style={{ color: 'var(--accent)' }}>analytics</span> — giving me the full picture
+            from UI pixel to database query.
+          </p>
+          <p style={{ color: 'var(--text)', fontSize: '1rem', lineHeight: 1.85 }}>
+            When I'm not coding, I'm exploring the intersection of data and user experience — and
+            figuring out how to make complex systems feel simple.
+          </p>
+        </div>
 
-        {/* Social Links */}
-        <div className="flex-1 flex flex-col justify-center items-center space-y-6 p-6 rounded-xl shadow-lg"
-          style={{ backgroundColor: "var(--navy-light)" }}
-        >
-            
-          <h3 className="text-xl font-semibold text-green-bright mb-4">Connect With Me</h3>
-          <p>I'm currently available for freelance work and open to full-time opportunities. If you have a project that you want to get started or think you need my help with something, then get in touch.</p>
-          <div className="flex gap-6 text-2xl text-slate">
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" title="LinkedIn" className="hover:text-green-bright transition-colors">
-              <FaLinkedin />
-            </a>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer"  className="hover:text-green-bright transition-colors">
-              <FaGithub />
-            </a>
-            <a href="https://twitter.com" target="_blank" rel="noopener noreferrer"  className="hover:text-green-bright transition-colors">
-              <FaTwitter />
-            </a>
-          </div>
-          <p className="text-slate text-center mt-6">Or email me directly at <span className="text-green-bright">kmongare4@gmail.com</span></p>
+        {/* Skills column */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
+          {categories.map(cat => (
+            <div key={cat.label}>
+              <p
+                className="font-mono"
+                style={{ fontSize: '0.7rem', letterSpacing: '0.18em', color: 'var(--accent)', marginBottom: 12, textTransform: 'uppercase' }}
+              >
+                {cat.label}
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+                {cat.items.map(item => (
+                  <span key={item} className="tag">{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
-export default ContactSection;
+export default AboutMe;

@@ -1,20 +1,145 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Montserrat:wght@600;800&family=Fira+Code&display=swap');
-@import "tailwindcss";
+import { useState } from 'react';
 
-/* Optional: custom classes */
-.font-sans {
-  font-family: 'Inter', sans-serif;
+interface Exp {
+  company: string;
+  role: string;
+  duration: string;
+  location: string;
+  details: string[];
+  type: 'engineering' | 'other';
 }
 
-.font-heading {
-  font-family: 'Montserrat', sans-serif;
-}
+const experiences: Exp[] = [
+  {
+    company: 'VibePrint', role: 'Associate Software Engineer',
+    duration: 'Sep 2025 – Present', location: 'Nairobi · Hybrid', type: 'engineering',
+    details: [
+      'Building responsive, reusable React UI components for a B2B/B2C e-commerce platform.',
+      'Integrating RESTful APIs for real-time product, order, and user data flows.',
+      'Improving site performance, accessibility, and SEO for 10k+ monthly visitors.',
+      'Collaborating cross-functionally with designers and engineers in an agile squad.',
+    ],
+  },
+  {
+    company: 'Learnsoft Beliotech', role: 'Full-Stack Intern',
+    duration: 'Jul 2025 – Sep 2025', location: 'Nairobi · Remote', type: 'engineering',
+    details: [
+      'Built a PostgreSQL-powered backend for the company website from scratch.',
+      'Designed and optimised relational schemas for content, jobs, and media entities.',
+      'Integrated Mailchimp & Google Analytics APIs with structured data pipelines.',
+    ],
+  },
+  {
+    company: 'Comet Digital Hub', role: 'Junior Software Engineer',
+    duration: 'Jan 2025 – Jul 2025', location: 'Nairobi · Remote', type: 'engineering',
+    details: [
+      'Worked on REST API ↔ SQL database integrations ensuring data integrity.',
+      'Collaborated with backend teams on data architecture and validation workflows.',
+      'Debugged performance bottlenecks in API-to-database communication layers.',
+    ],
+  },
+  {
+    company: 'Jumia Kenya', role: 'Customer Service Supervisor',
+    duration: 'Oct 2021 – Jul 2025', location: 'Nairobi', type: 'other',
+    details: [
+      'Resolved escalated complaints, improving client retention by 50%.',
+      'Earned "Best Customer Service Agent" 6× in a single year.',
+      'Managed 40+ customer interactions daily at 100% SLA compliance.',
+    ],
+  },
+  {
+    company: 'Kenya Medical Training College', role: 'IT Support Intern',
+    duration: 'Jan 2021 – Oct 2021', location: 'Nairobi', type: 'other',
+    details: [
+      'Maintained and monitored user IT equipment and accounts institution-wide.',
+      'Provided hardware & software support for the eLearning platform.',
+      'Configured new workstations and handled hardware replacement cycles.',
+    ],
+  },
+];
 
-.font-logo {
-  font-family: 'Orbitron', sans-serif;
-  letter-spacing: 2px; /* gives a techy feel */
-}
+const ExperienceSection = () => {
+  const [active, setActive] = useState(0);
+  const exp = experiences[active];
 
-.font-code {
-  font-family: 'Fira Code', monospace;
-}
+  return (
+    <section
+      id="experience"
+      style={{
+        minHeight: '100vh',
+        background: 'var(--bg)',
+        padding: 'clamp(64px,10vw,120px) clamp(24px,8vw,120px)',
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+      }}
+    >
+      <div style={{ maxWidth: 900, width: '100%' }}>
+        {/* Label */}
+        <p className="section-label" style={{ marginBottom: 12 }}>0.3 — Experience</p>
+
+        <h2
+          className="font-display"
+          style={{
+            fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 800,
+            color: 'var(--text-bright)', marginBottom: 48, letterSpacing: '-0.02em',
+          }}
+        >
+          Where I've Worked
+        </h2>
+
+        <div style={{ display: 'flex', gap: 40, flexWrap: 'wrap' }}>
+          {/* Sidebar tabs */}
+          <div style={{
+            display: 'flex', flexDirection: 'column', gap: 4,
+            borderLeft: '2px solid var(--border)', minWidth: 180,
+          }}>
+            {experiences.map((e, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                style={{
+                  background: 'none', border: 'none', cursor: 'pointer',
+                  textAlign: 'left', padding: '10px 16px',
+                  fontFamily: 'DM Mono, monospace', fontSize: '0.78rem',
+                  color: i === active ? 'var(--accent)' : 'var(--text-muted)',
+                  borderLeft: i === active ? '2px solid var(--accent)' : '2px solid transparent',
+                  marginLeft: -2, transition: 'all 0.2s',
+                  background: i === active ? 'var(--accent-dim)' : 'transparent',
+                  whiteSpace: 'nowrap',
+                } as React.CSSProperties}
+              >
+                {e.company}
+              </button>
+            ))}
+          </div>
+
+          {/* Detail panel */}
+          <div style={{ flex: 1, minWidth: 260 }}>
+            <div style={{ marginBottom: 8 }}>
+              <h3
+                className="font-display"
+                style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-bright)', marginBottom: 4 }}
+              >
+                {exp.role}{' '}
+                <span style={{ color: 'var(--accent)' }}>@ {exp.company}</span>
+              </h3>
+              <p className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+                {exp.duration} · {exp.location}
+              </p>
+            </div>
+
+            <ul style={{ marginTop: 24, display: 'flex', flexDirection: 'column', gap: 12 }}>
+              {exp.details.map((d, i) => (
+                <li key={i} style={{ display: 'flex', gap: 12, alignItems: 'flex-start' }}>
+                  <span style={{ color: 'var(--accent)', marginTop: 2, flexShrink: 0, fontSize: '0.85rem' }}>▹</span>
+                  <span style={{ color: 'var(--text)', fontSize: '0.95rem', lineHeight: 1.7 }}>{d}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default ExperienceSection;
