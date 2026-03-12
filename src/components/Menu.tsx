@@ -58,8 +58,8 @@ const Menu = () => {
       >
         {/* Logo */}
         <div
-          className="w-11 h-11 rounded-full flex items-center justify-center ring-2 overflow-hidden"
-          style={{ ringColor: "var(--accent-color)" }}
+          className="w-11 h-11 rounded-full flex items-center justify-center overflow-hidden"
+          style={{ outline: "2px solid var(--accent-color)" }}
         >
           <img
             src="./kev.png"
