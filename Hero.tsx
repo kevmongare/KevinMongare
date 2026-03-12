@@ -1,9 +1,23 @@
-/* Main layout offset for sidebar */
-.main-content {
-  margin-left: 0;
+const  TechStack ={
+    Frontend:[ 
+        "React.js", 
+        "Tailwind CSS", 
+        "JavaScript", 
+        "TypeScript"
+    ],
+    Backend: 
+    [
+        'Node.js', 
+        'Express.js', 
+        'REST APIs', 
+        'MongoDB', 
+        'PostgreSQL'
+    ],
+    DataScience: [
+        'Python (pandas, matplotlib)', 
+        'SQL', 
+        'Power BI', 
+        'Excel'
+    ]
 }
-@media (min-width: 768px) {
-  .main-content {
-    margin-left: 80px;
-  }
-}
+export default TechStack

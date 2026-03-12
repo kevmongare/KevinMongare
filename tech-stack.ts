@@ -1,133 +1,59 @@
-import React, { useState } from 'react';
-import { FaLinkedin, FaGithub, FaTwitter, FaEnvelope } from 'react-icons/fa';
+/* This code snippet is defining a React functional component called `Card` that represents a card
+component with customizable properties. */
 
-const ContactSection = () => {
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
-  const [sent, setSent] = useState(false);
-  const [loading, setLoading] = useState(false);
+import React from "react";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    setForm({ ...form, [e.target.name]: e.target.value });
+interface CardProps {
+  title: string;
+  description: string;
+  image?: string;
+  buttonText?: string;
+  onClick?: () => void;
+}
 
-  const onSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => { setLoading(false); setSent(true); setTimeout(() => setSent(false), 3500); }, 1200);
-  };
-
-  const socials = [
-    { icon: <FaLinkedin />, label: 'LinkedIn', url: 'https://www.linkedin.com/in/kevin-mongare-58b960200/' },
-    { icon: <FaGithub />,   label: 'GitHub',   url: 'https://github.com/kevmongare' },
-    { icon: <FaTwitter />,  label: 'Twitter',  url: 'https://x.com/kevin_mong86626' },
-  ];
-
+const Card: React.FC<CardProps> = ({
+  title,
+  description,
+  image,
+  buttonText = "See Demo",
+  onClick,
+}) => {
   return (
-    <section
-      id="contact"
-      style={{
-        minHeight: '100vh',
-        background: 'var(--bg)',
-        padding: 'clamp(64px,10vw,120px) clamp(24px,8vw,120px)',
-        display: 'flex', flexDirection: 'column', alignItems: 'center',
-      }}
-    >
-      <div style={{ maxWidth: 900, width: '100%' }}>
-        {/* Label */}
-        <p className="section-label" style={{ marginBottom: 12 }}>0.5 — Contact</p>
+    <div className="relative bg-navy-light hover:shadow-2xl rounded-sm overflow-hidden group transition-all duration-500 hover:scale-[1.02]">
+      {/* Image */}
+      {image && (
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-45 object-cover"
+        />
+      )}
 
-        <h2
-          className="font-display"
-          style={{
-            fontSize: 'clamp(2rem,5vw,3.2rem)', fontWeight: 800,
-            color: 'var(--text-bright)', marginBottom: 16, letterSpacing: '-0.02em',
-          }}
-        >
-          Let's Work Together
+      {/* Card Content */}
+      <div className="p-3 bg-navy flex flex-col justify-between h-54">
+        <h2 className="text-2xl font-heading mb-3" style={{ color: "var(--accent-color)" }}>
+          {title}
         </h2>
-        <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', marginBottom: 52, maxWidth: 460 }}>
-          Available for freelance projects and full-time opportunities. If you have an idea, let's talk.
+        <p className="text-slate text-sm md:text-base leading-relaxed flex-grow" style={{ color: "var(--text-color)" }}>
+          {description}
         </p>
+      </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 36 }}>
-          {/* Form */}
-          <form onSubmit={onSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <input
-              className="field" type="text" name="name" placeholder="Your name"
-              value={form.name} onChange={onChange} required
-            />
-            <input
-              className="field" type="email" name="email" placeholder="your@email.com"
-              value={form.email} onChange={onChange} required
-            />
-            <textarea
-              className="field" name="message" placeholder="Tell me about your project..."
-              value={form.message} onChange={onChange} required rows={6}
-              style={{ resize: 'vertical' }}
-            />
-            <button
-              type="submit"
-              className="btn btn-primary"
-              style={{ alignSelf: 'flex-start', minWidth: 160, justifyContent: 'center' }}
-              disabled={loading}
-            >
-              {loading ? 'Sending…' : sent ? '✓ Message Sent!' : 'Send Message'}
-            </button>
-          </form>
-
-          {/* Info panel */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 28 }}>
-            {/* Email */}
-            <a href="mailto:kmongare4@gmail.com"
-              style={{ display: 'flex', alignItems: 'center', gap: 14, color: 'var(--text)', textDecoration: 'none', transition: 'color 0.2s' }}
-              className="hover:[color:var(--accent)]">
-              <span style={{
-                width: 40, height: 40, borderRadius: 8, background: 'var(--accent-dim)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                color: 'var(--accent)', flexShrink: 0,
-              }}><FaEnvelope /></span>
-              <span>
-                <p className="font-mono" style={{ fontSize: '0.7rem', color: 'var(--text-muted)', marginBottom: 2 }}>EMAIL</p>
-                <p style={{ fontSize: '0.9rem' }}>kmongare4@gmail.com</p>
-              </span>
-            </a>
-
-            {/* Divider */}
-            <hr style={{ border: 'none', borderTop: '1px solid var(--border)' }} />
-
-            {/* Socials */}
-            <div>
-              <p className="font-mono" style={{ fontSize: '0.7rem', color: 'var(--text-muted)', letterSpacing: '0.18em', textTransform: 'uppercase', marginBottom: 16 }}>
-                Find me on
-              </p>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-                {socials.map(s => (
-                  <a key={s.label} href={s.url} target="_blank" rel="noopener noreferrer"
-                    style={{ display: 'flex', alignItems: 'center', gap: 12, color: 'var(--text-muted)', textDecoration: 'none', fontSize: '0.9rem', transition: 'color 0.2s' }}
-                    className="hover:[color:var(--accent)]">
-                    <span style={{ fontSize: '1rem' }}>{s.icon}</span>
-                    {s.label}
-                  </a>
-                ))}
-              </div>
-            </div>
-
-            {/* Availability note */}
-            <div
-              style={{
-                padding: '16px 20px', background: 'var(--accent-dim)',
-                border: '1px solid var(--border)', borderRadius: 10,
-                marginTop: 8,
-              }}
-            >
-              <p style={{ color: 'var(--accent)', fontSize: '0.85rem', lineHeight: 1.6 }}>
-                🟢 Currently available for new projects and open to full-time roles.
-              </p>
-            </div>
-          </div>
+      {/* Slide-up button */}
+      <div className="absolute bottom-0 left-0 right-0 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+        <div className="bg-green-bright flex justify-center py-3">
+          <button
+            onClick={onClick}
+            className="flex items-center gap-2 font-semibold hover:scale-105 transition-transform"
+            style={{ color: "var(--bg-color)" }}
+          >
+            {buttonText} <FaExternalLinkAlt />
+          </button>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default ContactSection;
+export default Card;
