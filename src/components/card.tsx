@@ -18,7 +18,7 @@ const Card: React.FC<CardProps> = ({
 }) => {
   return (
     <div
-      className="group relative rounded-xl overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
+      className="group relative rounded-sm overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-xl"
       style={{
         backgroundColor: "color-mix(in srgb, var(--accent-color) 4%, var(--bg-color))",
         border: "1px solid color-mix(in srgb, var(--accent-color) 12%, transparent)",
