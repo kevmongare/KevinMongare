@@ -37,7 +37,7 @@ const projects: Project[] = [
     id: 4,
     title: "PrimeEdgeAi",
     description: "Prime Edge AI helps businesses worldwide gain a decisive edge through AI education, intelligent automation, and custom AI solutions — built to reduce costs, accelerate growth, and.",
-    image: "./MyKlub.png",
+    image: "./PrimeEdgeAIpic.png",
     buttonText: "Check Website",
     url: "https://primeedgeai.net",
   },
