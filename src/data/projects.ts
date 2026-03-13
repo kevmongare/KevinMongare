@@ -13,21 +13,21 @@ const projects: Project[] = [
     title: "VibePrint",
     description: "A full B2B/B2C e-commerce platform for a branding company - VibePrint..",
     image: "./VibePrint_KevinM.png",
-    buttonText: "See Demo",
+    buttonText: "Check Website",
   },
   {
     id: 2,
     title: "Viagens Safaris",
     description: "Viagens Africa Safaris is a dynamic and a fast growing Tours and Ticketing Company.",
     image: "./Viagens_Kev.png",
-    buttonText: "See Demo",
+    buttonText: "Check Website",
   },
   {
     id: 3,
     title: "MyKlub",
     description: "– Portfolio & collaboration platform for creatives",
     image: "./MyKlub.png",
-    buttonText: "See Demo",
+    buttonText: "Check Website",
   },
 ];
 
