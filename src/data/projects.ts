@@ -27,11 +27,19 @@ const projects: Project[] = [
   },
   {
     id: 3,
-    title: "MyKlub",
-    description: "Portfolio & collaboration platform for creatives.",
+    title: "Adarah",
+    description: "Adarah helps mothers understand symptoms and know when to seek urgent care.",
+    image: "./Adarah.png",
+    buttonText: "Check Website",
+    url: "https://adarah.vercel.app/",
+  },
+  {
+    id: 4,
+    title: "PrimeEdgeAi",
+    description: "Prime Edge AI helps businesses worldwide gain a decisive edge through AI education, intelligent automation, and custom AI solutions — built to reduce costs, accelerate growth, and.",
     image: "./MyKlub.png",
     buttonText: "Check Website",
-    url: "https://myklub.io",
+    url: "https://primeedgeai.net",
   },
 ];
 
