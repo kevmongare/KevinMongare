@@ -41,6 +41,14 @@ const projects: Project[] = [
     buttonText: "Check Website",
     url: "https://primeedgeai.net",
   },
+  {
+    id: 5,
+    title: "macclipboard",
+    description: "A free, open-source floating clipboard history manager that stays on top of every window — including fullscreen apps. Built because most clipboard managers are either paid or not robust enough.",
+    image: "./macclipboard.png",
+    buttonText: "Check Website",
+    url: "https://macclipboardinstallpage-2i3o.vercel.app/",
+  },
 ];
 
 export default projects;
